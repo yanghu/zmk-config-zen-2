@@ -20,19 +20,26 @@
   };
 };
 
+// Shift/Capslock tap dance
+ZMK_BEHAVIOR(td_caps, tap_dance,
+        tapping-term-ms = <200>;
+        bindings = <&kp LSHFT>, <&kp CAPS>;
+    )
+
+// combos
 ZMK_COMBO(combo_esc, &kp ESC, RM1 RM2, ALL)
 ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 
 / {
-    behaviors {
-      td_caps: td_caps {
-        compatible = "zmk,behavior-tap-dance";
-        label = "TD_CAPS";
-        #binding-cells = <0>;
-        tapping-term-ms = <200>;
-        bindings = <&kp LSHFT>, <&kp CAPS>;
-      };
-    };
+    // behaviors {
+    //   td_caps: td_caps {
+    //     compatible = "zmk,behavior-tap-dance";
+    //     label = "TD_CAPS";
+    //     #binding-cells = <0>;
+    //     tapping-term-ms = <200>;
+    //     bindings = <&kp LSHFT>, <&kp CAPS>;
+    //   };
+    // };
 
         keymap {
                 compatible = "zmk,keymap";
