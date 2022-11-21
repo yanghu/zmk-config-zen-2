@@ -20,8 +20,8 @@
   };
 };
 
-ZMK_COMBO(combo_esc, $kp ESC, RM1 RM2, ALL)
-ZMK_COMBO(combo_tab, $kp TAB, LB1 LB2, ALL)
+ZMK_COMBO(combo_esc, &kp ESC, RM1 RM2, ALL)
+ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 
 / {
     behaviors {
