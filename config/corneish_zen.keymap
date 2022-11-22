@@ -82,7 +82,7 @@ ZMK_BEHAVIOR(swapper, tri_state,
     )
 
 // combos
-ZMK_COMBO(combo_esc, &kp ESC, RB1 RB2, ALL)
+ZMK_COMBO(combo_esc, &kp ESC, RB1 RB2, DEFAULT)
 ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 ZMK_COMBO(combo_paste, &kp LC(LS(V)), LM4 LM3 LB1, ALL)
 ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
@@ -166,7 +166,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //├──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────┤
    &reset     &out OUT_TOG ____  ____   ____    ____         ____   ____     ____      ____      ____       ____
 //╰──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────╯
-                                 ____   ____    ____         ____  &bootloader ____
+                                 &bootloader   ____    ____         ____  &bootloader ____
 //                              ╰──────┴───────┴───────╯   ╰──────┴─────────┴─────────╯
                         >;
                 };
