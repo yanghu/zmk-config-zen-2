@@ -12,6 +12,11 @@
 #define FUNC 2
 #define NAV 3
 #define NUMPAD 4
+#define SCRP 5
+
+#define ____ &trans
+#define XXXX &none
+#define BT(x) &bt BT_SEL x
 
 / {
   chosen {
@@ -35,7 +40,7 @@ ZMK_BEHAVIOR(hrm, hold_tap,
     bindings = <&kp>, <&kp>;
     )
 
-ZMK_BEHAVIOR(lh_pht, hold_tap,
+ZMK_BEHAVIOR(lht, hold_tap,
     flavor = "balanced";
     hold-trigger-key-positions = < 
       RT0 RT1 RT2 RT3 RT4 RT5 
@@ -49,7 +54,7 @@ ZMK_BEHAVIOR(lh_pht, hold_tap,
     bindings = <&kp>, <&kp>;
     )
 
-ZMK_BEHAVIOR(rh_pht, hold_tap,
+ZMK_BEHAVIOR(rht, hold_tap,
     flavor = "balanced";
     hold-trigger-key-positions = < 
       LT0 LT1 LT2 LT3 LT4 LT5 
@@ -63,11 +68,11 @@ ZMK_BEHAVIOR(rh_pht, hold_tap,
     bindings = <&kp>, <&kp>;
     )
 
-ZMK_BEHAVIOR(num_lt, hold_tap,
+ZMK_BEHAVIOR(n_lt, hold_tap,
     flavor = "tap-preferred";
     global-quick-tap;
-    tapping-term-ms = <200>;
-    quick-tap-ms = <100>;
+    tapping-term-ms = <150>;
+    quick-tap-ms = <90>;
     hold-trigger-key-positions = < 
       RT1 RT2 RT3
       RM1 RM2 RM3
@@ -117,10 +122,16 @@ ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 // | ALT   |  Z  |  X  |  C  |  V  |  B     |   |  N      |  M   |  ,  |  .  |  /  | ENT  |
 //                     | GUI | SYM | NAV_ENT|   | FUNC_BSC| SPC  | CTRL|
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &td_caps &lh_pht LCTRL A &lh_pht LSHFT S &kp D &num_lt NUMPAD F &kp G    &kp H &kp J  &rh_pht LCTRL K     &kp L   &kp SEMI &kp SQT
-   &kp LALT &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RET
-                  &kp LGUI &mo SYMBOL &lt NAV RET &kp LSHIFT &kp SPACE &kp LCTRL
+//╭──────────┬─────────────┬─────────────┬───────┬─────────────┬─────────────╮   ╭───────────┬─────────┬─────────────┬────────┬────────┬────────╮
+   &kp TAB    &kp Q         &kp W         &kp E   &kp R         &kp T             &kp Y       &kp U     &kp I         &kp O    &kp P    &kp BSPC
+//├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
+   &td_caps   &lht LCTRL A  &lht LSHFT S  &kp D   &n_lt NUMPAD F &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
+//├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
+   &kp LCTRL  &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt SCRP RET
+//╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
+                                         &kp LGUI &mo SYMBOL    &lt NAV RET       &kp LSHIFT &kp SPACE &kp LALT
+//                                       ╰───────┴─────────────┴─────────────╯   ╰───────────┴─────────┴─────────────╯
+
                         >;
                 };
 
@@ -132,25 +143,36 @@ ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 // |     |  |  |  `  |  \  |  ~  | c-␣    |   |         |  +  |  <  |  >  |  ?  |TO(LAYERS|
 //                   | GUI | SYM | NAV_ENT|   | FUNC    | 0   | CTRL|
                         bindings = <
-   &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT    &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &trans
-   &swapper &kp LBKT &kp RBKT &kp LBRC &kp RBRC &kp LG(SPACE) &kp LC(CARET) &kp MINUS &kp EQUAL &kp UNDER &kp COLON &kp DQT
-   &trans &kp PIPE &kp GRAVE &kp BSLH &kp TILDE &kp LC(SPACE)  &none &kp PLUS  &kp LT &kp GT &kp QMARK &trans
-                    	     &trans &trans   &trans &mo FUNC &kp N0 &trans
+//╭──────────┬─────────┬─────────┬─────────┬───────┬─────────────╮   ╭─────────────┬─────────┬─────────┬─────────┬──────────┬───────╮
+   &kp TILDE  &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT         &kp CARET     &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR   ____
+//├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
+   &swapper   &kp LBKT  &kp RBKT &kp LBRC  &kp RBRC &kp LG(SPACE)     &kp LC(CARET) &kp MINUS &kp EQUAL &kp UNDER &kp COLON  &kp DQT
+//├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
+   ____       &kp PIPE  &kp GRAVE &kp BSLH &kp TILDE &kp LC(SPACE)     XXXX         &kp PLUS  &kp LT    &kp GT    &kp QMARK ____
+//╰──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────╯
+                                     ____    ____   ____              &mo FUNC       &kp N0    ____
+//                               ╰─────────┴───────┴─────────────╯   ╰─────────────┴─────────┴─────────╯
                         >;
                 };
 
                 func_layer {
                         label = "FUNC";
-// -----------------------------------------------------------------------------------------
-// |  F1  | F2    | F3  | F4  | F5  | F6  |   | F7  | F8  | F9  | F10 | F11 |  F12 |
-// | BTCLR| BT1   | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
-// | SHFT |OUT_TOG|     |     |     |     |   |     |     |     |     |     |      |
-//                      | GUI |     | SPC |   | ENT |     | ALT |
+// ╭──────┬───────┬─────┬─────┬─────┬─────╮   ╭─────┬──────────┬─────┬─────┬─────┬──────╮
+// |  F1  | F2    | F3  | F4  | F5  | F6  |   | F7  | F8       | F9  | F10 | F11 |  F12 |
+// | BTCLR| BT1   | BT2 | BT3 | BT4 | BT5 |   |     |          |     |     |     |      |
+// | RESET|OUT_TOG|     |     |     |     |   |     |          |     |     |     |      |
+//                      |     |     |     |   |     |BOOTLOADER|     |
+//                      ╰─────┴─────┴─────╯   ╰─────┴──────────┴─────╯
                         bindings = <
-   &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6           &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4    &trans &trans &trans &trans &trans &trans
-   &kp LSHFT  &out OUT_TOG   &trans &trans &trans &trans                          &trans   &trans   &trans &trans    &trans &trans
-                             &trans &trans &trans        &trans &trans &trans
+//╭──────────┬─────────┬────────┬──────┬───────┬───────╮   ╭──────┬─────────┬─────────┬─────────┬──────────┬───────╮
+   &kp F1      &kp F2   &kp F3   &kp F4 &kp F5  &kp F6      &kp F7  &kp F8   &kp F9    &kp F10   &kp F11    &kp F12
+//├──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────┤
+   &bt BT_CLR  BT(0)    BT(1)    BT(2)  BT(3)   BT(4)        ____   ____     ____      ____      ____       ____
+//├──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────┤
+   &reset     &out OUT_TOG ____  ____   ____    ____         ____   ____     ____      ____      ____       ____
+//╰──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────╯
+                                 ____   ____    ____         ____  &bootloader ____
+//                              ╰──────┴───────┴───────╯   ╰──────┴─────────┴─────────╯
                         >;
                 };
 
@@ -162,10 +184,15 @@ ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp TAB    &kp LA(N1)  &kp LA(N2) &kp LA(N3) &kp LA(N4) &kp LA(N5)         &none   &kp PG_UP   &none  &none &none  &none
-   &trans     &none &kp LSHFT &kp PG_DN &kp LCTRL &none   &kp LEFT &kp DOWN &kp UP &kp RIGHT &none &none
-   &trans &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                          	        &trans &trans       &trans &trans &trans   &trans
+//╭──────┬──────────┬─────────┬───────────┬─────────┬────────────╮   ╭────────┬─────────┬─────────┬──────┬─────┬───────╮
+   ____   &kp LA(N1) &kp LA(N2) &kp LA(N3) &kp LA(N4) &kp LA(N5)      &kp HOME &kp PG_UP &kp END   XXXX   XXXX  XXXX
+//├──────┼──────────┼─────────┼───────────┼─────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────┤
+   ____   &kp LCTRL  &kp LSHFT &kp PG_DN   &kp LCTRL  XXXX            &kp LEFT &kp DOWN &kp UP &kp RIGHT  XXXX  XXXX
+//├──────┼──────────┼─────────┼───────────┼─────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────┤
+   XXXX   XXXX       XXXX      XXXX        XXXX      XXXX             XXXX     XXXX      XXXX      XXXX   XXXX  XXXX
+//╰──────┼──────────┼─────────┼───────────┼─────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────╯
+                       	        ____         ____       ____           ____      ____     ____
+//                            ╰───────────┴─────────┴────────────╯   ╰────────┴─────────┴─────────╯
                         >;
                 };
 
@@ -177,13 +204,34 @@ ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 // | SHFT | LGUI  |       |      |     |       |   |     |  1  |  2  |  3  |  /  | = |
 //                        | GUI  | SYM |NAV_ENT|   |P_ENT|  0  | CTRL|
                         bindings = <
-   &trans     &trans     &trans     &trans     &trans &trans              &trans     &kp N7     &kp N8     &kp N9     &kp PLUS     &trans
-   &sk LGUI   &sk LCTRL  &sk LSHFT  &sk LALT   &trans &trans              &trans     &kp N4    &kp N5     &kp N6     &kp MINUS   &kp STAR
-   &kp LSHFT  &kp LGUI   &trans     &trans     &trans &trans              &trans     &kp N1     &kp N2    &kp N3    &kp SLASH    &kp EQUAL
-                             &trans &trans &trans        &kp KP_ENTER &kp N0 &trans
+//╭─────────┬──────────┬─────────┬───────────┬──────┬──────╮   ╭───────────┬───────┬───────┬──────┬─────────┬──────────╮
+   ____      ____       ____      ____        ____   ____        ____       &kp N7  &kp N8  &kp N9  &kp PLUS  ____
+//├─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────┤
+   &sk LGUI  &sk LCTRL  &sk LSHFT  &sk LALT   ____   ____        ____       &kp N4  &kp N5  &kp N6  &kp MINUS &kp STAR
+//├─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────┤
+   &kp LSHFT &kp LGUI   ____      ____        ____   ____        ____       &kp N1  &kp N2  &kp N3  &kp SLASH &kp EQUAL
+//╰─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────╯
+                                  ____        ____   ____       &kp KP_ENTER &kp N0  ____
+//                               ╰───────────┴──────┴──────╯   ╰───────────┴───────┴───────╯
+                        >;
+                }; // num_layer
+
+                screenshot_layer {
+                        label = "SCRP";
+                        bindings = <
+//╭────────┬─────────┬─────────┬─────┬─────┬────╮   ╭─────┬─────┬─────┬──────┬────┬─────────╮
+   XXXX     XXXX      XXXX      XXXX  XXXX  XXXX     XXXX  XXXX  XXXX  XXXX  XXXX  XXXX
+//├────────┼─────────┼─────────┼─────┼─────┼────┤   ├─────┼─────┼─────┼──────┼────┼─────────┤
+   XXXX     &kp LCTRL &kp LSHFT XXXX  XXXX  XXXX     XXXX  XXXX  XXXX  XXXX  XXXX  &kp PSCRN
+//├────────┼─────────┼─────────┼─────┼─────┼────┤   ├─────┼─────┼─────┼──────┼────┼─────────┤
+   &kp LALT  XXXX      XXXX      XXXX  XXXX  XXXX     XXXX  XXXX  XXXX  XXXX  XXXX  ____
+//╰────────┼─────────┼─────────┼─────┼─────┼────┤   ├─────┼─────┼─────┼──────┼────┼─────────╯
+                                ____  ____  ____     ____  ____  ____
+//                             ╰─────┴─────┴────╯   ╰─────┴─────┴─────╯
                         >;
                 }; // num_layer
 
         };  // keymap
 
 }; // root
+
