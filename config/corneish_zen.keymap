@@ -12,7 +12,7 @@
 #define FUNC 2
 #define NAV 3
 #define NUMPAD 4
-#define SCRP 5
+#define PSCR 5
 
 #define ____ &trans
 #define XXXX &none
@@ -32,14 +32,6 @@ ZMK_BEHAVIOR(td_caps, tap_dance,
     )
 
 // Home row mods
-ZMK_BEHAVIOR(hrm, hold_tap,
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <125>;
-    global-quick-tap;
-    bindings = <&kp>, <&kp>;
-    )
-
 ZMK_BEHAVIOR(lht, hold_tap,
     flavor = "balanced";
     hold-trigger-key-positions = < 
@@ -47,10 +39,11 @@ ZMK_BEHAVIOR(lht, hold_tap,
       RM0 RM1 RM2 RM3 RM4 RM5 
       RB0 RB1 RB2 RB3 RB4 RB5 
       RH0 RH1 RH2
+      LM3 LB1 LB2
     >;
     global-quick-tap;
     tapping-term-ms = <200>;
-    quick-tap-ms = <125>;
+    quick-tap-ms = <90>;
     bindings = <&kp>, <&kp>;
     )
 
@@ -64,7 +57,7 @@ ZMK_BEHAVIOR(rht, hold_tap,
     >;
     tapping-term-ms = <200>;
     global-quick-tap;
-    quick-tap-ms = <125>;
+    quick-tap-ms = <100>;
     bindings = <&kp>, <&kp>;
     )
 
@@ -91,6 +84,8 @@ ZMK_BEHAVIOR(swapper, tri_state,
 // combos
 ZMK_COMBO(combo_esc, &kp ESC, RB1 RB2, ALL)
 ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
+ZMK_COMBO(combo_paste, &kp LC(LS(V)), LM4 LM3 LB1, ALL)
+ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 
 / {
     // behaviors {
@@ -127,7 +122,7 @@ ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
    &td_caps   &lht LCTRL A  &lht LSHFT S  &kp D   &n_lt NUMPAD F &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
-   &kp LCTRL  &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt SCRP RET
+   &kp LCTRL  &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
 //╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
                                          &kp LGUI &mo SYMBOL    &lt NAV RET       &kp LSHIFT &kp SPACE &kp LALT
 //                                       ╰───────┴─────────────┴─────────────╯   ╰───────────┴─────────┴─────────────╯
@@ -217,10 +212,10 @@ ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
                 }; // num_layer
 
                 screenshot_layer {
-                        label = "SCRP";
+                        label = "PSCR";
                         bindings = <
 //╭────────┬─────────┬─────────┬─────┬─────┬────╮   ╭─────┬─────┬─────┬──────┬────┬─────────╮
-   XXXX     XXXX      XXXX      XXXX  XXXX  XXXX     XXXX  XXXX  XXXX  XXXX  XXXX  XXXX
+   XXXX     XXXX      XXXX      XXXX  XXXX  XXXX     XXXX  XXXX  XXXX  XXXX  XXXX  &kp LS(PSCRN)
 //├────────┼─────────┼─────────┼─────┼─────┼────┤   ├─────┼─────┼─────┼──────┼────┼─────────┤
    XXXX     &kp LCTRL &kp LSHFT XXXX  XXXX  XXXX     XXXX  XXXX  XXXX  XXXX  XXXX  &kp PSCRN
 //├────────┼─────────┼─────────┼─────┼─────┼────┤   ├─────┼─────┼─────┼──────┼────┼─────────┤
@@ -229,7 +224,7 @@ ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
                                 ____  ____  ____     ____  ____  ____
 //                             ╰─────┴─────┴────╯   ╰─────┴─────┴─────╯
                         >;
-                }; // num_layer
+                }; // screenshot layr
 
         };  // keymap
 
