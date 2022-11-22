@@ -25,10 +25,20 @@
   };
 };
 
-// Sticky Shift/Capslock tap dance
+// Sticky key config
+&sk {
+  release-after-ms = <600>; // release after 0.6s
+  quick-release;
+}
+
+ZMK_BEHAVIOR(prog_caps_word, caps_word,
+    continue-list = <UNDERSCORE>;
+    )
+
+// Sticky Shift/ caps word/ Capslock tap dance
 ZMK_BEHAVIOR(td_caps, tap_dance,
         tapping-term-ms = <200>;
-        bindings = <&sk LSHFT>, <&kp CAPS>;
+        bindings = <&sk LSHFT>, <&prog_caps_word>, <&kp CAPS>;
     )
 
 // Home row mods
@@ -95,25 +105,6 @@ ZMK_COMBO(combo_paste, &kp LC(LS(V)), LM4 LM3 LB1, ALL)
 ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 
 / {
-    // behaviors {
-    //   td_caps: td_caps {
-    //     compatible = "zmk,behavior-tap-dance";
-    //     label = "TD_CAPS";
-    //     #binding-cells = <0>;
-    //     tapping-term-ms = <200>;
-    //     bindings = <&kp LSHFT>, <&kp CAPS>;
-    //   };
-    // };
-  // behaviors {
-  //         swapper: swapper {
-  //           compatible = "zmk,behavior-tri-state";
-  //           label = "SWAPPER";
-  //           #binding-cells = <0>;
-  //           bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
-  //           ignored-key-positions = <LM5>;
-  //       };  
-  // };
-
         keymap {
                 compatible = "zmk,keymap";
                 default_layer {
@@ -121,8 +112,8 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 // -----------------------------------------------------------------------------------------
 // |  TAB  |  Q  |  W  |  E  |  R  |  T     |   |  Y      |  U   |  I  |  O  |  P  | BKSP |
 // | S/CAPS|  A  |  S  |  D  |  F  |  G     |   |  H      |  J   |  K  |  L  |  ;  |  '   |
-// | ALT   |  Z  |  X  |  C  |  V  |  B     |   |  N      |  M   |  ,  |  .  |  /  | ENT  |
-//                     | GUI | SYM | NAV_ENT|   | FUNC_BSC| SPC  | CTRL|
+// | CTRL  |  Z  |  X  |  C  |  V  |  B     |   |  N      |  M   |  ,  |  .  |  /  | ENT  |
+//                     | GUI | SYM | NAV_ENT|   | sk SHIFT| SPC  | ALT |
                         bindings = <
 //╭──────────┬─────────────┬─────────────┬───────┬─────────────┬─────────────╮   ╭───────────┬─────────┬─────────────┬────────┬────────┬────────╮
    &kp TAB    &kp Q         &kp W         &kp E   &kp R         &kp T             &kp Y       &kp U     &kp I         &kp O    &kp P    &bspc_del
@@ -131,7 +122,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
    &kp LCTRL  &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
 //╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
-                                         &kp LGUI &mo SYMBOL    &lt NAV RET       &kp LSHIFT &kp SPACE &kp LALT
+                                         &kp LGUI &mo SYMBOL    &lt NAV RET       &sk LSHIFT  &kp SPACE &kp LALT
 //                                       ╰───────┴─────────────┴─────────────╯   ╰───────────┴─────────┴─────────────╯
 
                         >;
@@ -171,9 +162,9 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //├──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────┤
    &bt BT_CLR  BT(0)    BT(1)    BT(2)  BT(3)   BT(4)        ____   ____     ____      ____      ____       ____
 //├──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────┤
-   &reset     &out OUT_TOG ____  ____   ____    ____         ____   ____     ____      ____      ____       ____
+   ____       &out OUT_TOG ____  ____   &reset  &bootloader &bootloader &reset ____      ____      ____       ____
 //╰──────────┼─────────┼────────┼──────┼───────┼───────┤   ├──────┼─────────┼─────────┼─────────┼──────────┼───────╯
-                                 &bootloader   ____    ____         ____  &bootloader ____
+                                 ____    ____    ____         ____  ____     ____
 //                              ╰──────┴───────┴───────╯   ╰──────┴─────────┴─────────╯
                         >;
                 };
@@ -181,10 +172,10 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
                 nav_layer {
                         label = "NAVI";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |     |PG_UP|     |     |     | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// |  TAB |A(1) |A(2) |A(3) |A(4) |A(5) |   |HOME |PG_UP| END |     |     |      |
+// |      |CTRL |SHIFT|PG_DN|CTRL |     |   | LFT | DWN |  UP | RGT |     |      |
+// |      |     |     |MUTE |VOL- |VOL+ |   |     |     |     |     |     |      |
+//                    | GUI |     |     |   | SHFT|     | ALT |
                         bindings = <
 //╭──────┬──────────┬─────────┬───────────┬────────────┬────────────╮   ╭────────┬─────────┬─────────┬──────┬─────┬───────╮
    ____   &kp LA(N1) &kp LA(N2) &kp LA(N3) &kp LA(N4)   &kp LA(N5)       &kp HOME &kp PG_UP &kp END   XXXX   XXXX  XXXX
@@ -204,7 +195,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 // | TAB  |       |       |      |     |       |   |     |  7  |  8  |  9  |  +  |   |
 // |S(GUI)|S(CTRL)|S(SHFT)|S(ALT)|     |       |   |     |  4  |  5  |  6  |  -  | * |
 // | SHFT | LGUI  |       |      |     |       |   |     |  1  |  2  |  3  |  /  | = |
-//                        | GUI  | SYM |NAV_ENT|   |P_ENT|  0  | CTRL|
+//                        | GUI  | SYM |NAV_ENT|   |P_ENT|  0  | .   |
                         bindings = <
 //╭─────────┬──────────┬─────────┬───────────┬──────┬──────╮   ╭───────────┬───────┬───────┬──────┬─────────┬──────────╮
    ____      ____       ____      ____        ____   ____        ____       &kp N7  &kp N8  &kp N9  &kp PLUS  ____
@@ -213,7 +204,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //├─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────┤
    &kp LSHFT &kp LGUI   ____      ____        ____   ____        ____       &kp N1  &kp N2  &kp N3  &kp SLASH &kp EQUAL
 //╰─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────╯
-                                  ____        ____   ____       &kp KP_ENTER &kp N0  ____
+                                  ____        ____   ____       &kp KP_ENTER &kp N0 &kp DOT 
 //                               ╰───────────┴──────┴──────╯   ╰───────────┴───────┴───────╯
                         >;
                 }; // num_layer
