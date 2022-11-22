@@ -29,7 +29,7 @@
 &sk {
   release-after-ms = <600>; // release after 0.6s
   quick-release;
-}
+};
 
 ZMK_BEHAVIOR(prog_caps_word, caps_word,
     continue-list = <UNDERSCORE>;
@@ -85,6 +85,13 @@ ZMK_BEHAVIOR(n_lt, hold_tap,
     bindings = <&mo>, <&kp>;
     )
 
+
+// Sticky Shift/ caps word/ Capslock tap dance
+ZMK_BEHAVIOR(num_dance, tap_dance,
+        tapping-term-ms = <200>;
+        bindings = <&n_lt NUMPAD F>, <&to NUMPAD>;
+    )
+
 // for alt+tab with SYMBOL + CAPS
 ZMK_BEHAVIOR(swapper, tri_state,
     bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
@@ -118,7 +125,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //╭──────────┬─────────────┬─────────────┬───────┬─────────────┬─────────────╮   ╭───────────┬─────────┬─────────────┬────────┬────────┬────────╮
    &kp TAB    &kp Q         &kp W         &kp E   &kp R         &kp T             &kp Y       &kp U     &kp I         &kp O    &kp P    &bspc_del
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
-   &td_caps   &lht LCTRL A  &lht LSHFT S  &kp D   &n_lt NUMPAD F &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
+   &td_caps   &lht LCTRL A  &lht LSHFT S  &kp D   &num_dance    &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
    &kp LCTRL  &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
 //╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
@@ -198,7 +205,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //                        | GUI  | SYM |NAV_ENT|   |P_ENT|  0  | .   |
                         bindings = <
 //╭─────────┬──────────┬─────────┬───────────┬──────┬──────╮   ╭───────────┬───────┬───────┬──────┬─────────┬──────────╮
-   ____      ____       ____      ____        ____   ____        ____       &kp N7  &kp N8  &kp N9  &kp PLUS  ____
+   ____      ____       ____      ____        ____   ____       &to DEFAULT &kp N7  &kp N8  &kp N9  &kp PLUS  ____
 //├─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────┤
    &sk LGUI  &sk LCTRL  &sk LSHFT  &sk LALT   ____   ____        ____       &kp N4  &kp N5  &kp N6  &kp MINUS &kp STAR
 //├─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────┤
