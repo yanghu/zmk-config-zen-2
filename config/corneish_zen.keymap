@@ -42,8 +42,8 @@ ZMK_BEHAVIOR(lht, hold_tap,
       LM3 LM4 LB1 LB2 LT3
     >;
     global-quick-tap;
-    tapping-term-ms = <200>;
-    quick-tap-ms = <90>;
+    tapping-term-ms = <180>;
+    quick-tap-ms = <80>;
     bindings = <&kp>, <&kp>;
     )
 
