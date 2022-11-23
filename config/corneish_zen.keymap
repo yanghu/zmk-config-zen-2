@@ -38,7 +38,7 @@ ZMK_BEHAVIOR(prog_caps_word, caps_word,
 // Sticky Shift/ caps word/ Capslock tap dance
 ZMK_BEHAVIOR(td_caps, tap_dance,
         tapping-term-ms = <200>;
-        bindings = <&sk LSHFT>, <&prog_caps_word>, <&kp CAPS>;
+        bindings = <&kp LSHFT>, <&prog_caps_word>, <&kp CAPS>;
     )
 
 // Home row mods
@@ -122,7 +122,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
    &kp LCTRL  &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
 //╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
-                                         &kp LGUI &mo SYMBOL    &lt NAV RET       &kp LSHIFT  &kp SPACE &kp LALT
+                                         &kp LGUI &mo SYMBOL    &lt NAV RET       &sk LSHIFT  &kp SPACE &kp LALT
 //                                       ╰───────┴─────────────┴─────────────╯   ╰───────────┴─────────┴─────────────╯
 
                         >;
