@@ -37,7 +37,7 @@ ZMK_BEHAVIOR(prog_caps_word, caps_word,
 
 // Sticky Shift/ caps word/ Capslock tap dance
 ZMK_BEHAVIOR(td_caps, tap_dance,
-        tapping-term-ms = <200>;
+        tapping-term-ms = <130>;
         bindings = <&kp LSHFT>, <&prog_caps_word>, <&kp CAPS>;
     )
 
