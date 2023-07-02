@@ -86,10 +86,16 @@ ZMK_BEHAVIOR(n_lt, hold_tap,
     bindings = <&mo>, <&kp>;
     )
 
-// for alt+tab with SYMBOL + CAPS
+// for cmd+tab with SYMBOL + caps
 ZMK_BEHAVIOR(swapper, tri_state,
-    bindings = <&kt LALT>, <&kp TAB>, <&kt LALT>;
+    bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
     ignored-key-positions = <LM5>;
+    )
+
+// for cmd+tilda with SYMBOL + tilde
+ZMK_BEHAVIOR(swapper_tilde, tri_state,
+    bindings = <&kt LGUI>, <&kp TILDE>, <&kt LGUI>;
+    ignored-key-positions = <LT5>;
     )
 
 // BSPC, shift as delete
@@ -112,16 +118,16 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
                         label = "QWERTY";
 // -----------------------------------------------------------------------------------------
 // |  TAB  |  Q  |  W  |  E  |  R  |  T     |   |  Y      |  U   |  I  |  O  |  P  | BKSP |
-// | S/CAPS|  A  |  S  |  D  |  F  |  G     |   |  H      |  J   |  K  |  L  |  ;  |  '   |
-// | CTRL  |  Z  |  X  |  C  |  V  |  B     |   |  N      |  M   |  ,  |  .  |  /  | ENT  |
+// | CTRL  |  A  |  S  |  D  |  F  |  G     |   |  H      |  J   |  K  |  L  |  ;  |  '   |
+// | S/CAP |  Z  |  X  |  C  |  V  |  B     |   |  N      |  M   |  ,  |  .  |  /  | ENT  |
 //                     | GUI | SYM | NAV_ENT|   | sk SHIFT| SPC  | ALT |
                         bindings = <
 //╭──────────┬─────────────┬─────────────┬───────┬─────────────┬─────────────╮   ╭───────────┬─────────┬─────────────┬────────┬────────┬────────╮
    &kp TAB    &kp Q         &kp W         &kp E   &kp R         &kp T             &kp Y       &kp U     &kp I         &kp O    &kp P    &bspc_del
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
-   &td_caps   &lht LCTRL A  &lht LSHFT S  &kp D   &n_lt NUMPAD F &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
+   &kp LCTRL  &lht LCTRL A  &lht LSHFT S  &kp D   &n_lt NUMPAD F &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
-   &kp LCTRL  &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
+   &td_caps   &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
 //╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
                                          &kp LGUI &mo SYMBOL    &lt NAV RET       &sk LSHIFT  &kp SPACE &kp LALT
 //                                       ╰───────┴─────────────┴─────────────╯   ╰───────────┴─────────┴─────────────╯
@@ -132,13 +138,13 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
                 symbol_layer {
                         label = "SYMBOL";
 // -----------------------------------------------------------------------------------------
-// |  ~  |  !  |  @  |  #  |  $  |  %     |   |  ^      |  &  |  *  |  (  |  )  | BKSP    |
-// |A-Tab|  [  |  {  |  }  |  ]  | g-␣    |   | c-^     |  -  |  =  |  _  |  :  |  "      |
+// |G-~  |  !  |  @  |  #  |  $  |  %     |   |  ^      |  &  |  *  |  (  |  )  | BKSP    |
+// |G-Tab|  [  |  {  |  }  |  ]  | g-␣    |   | c-^     |  -  |  =  |  _  |  :  |  "      |
 // |     |  |  |  `  |  \  |  ~  | c-␣    |   |         |  +  |  <  |  >  |  ?  |TO(LAYERS|
 //                   | GUI | SYM | NAV_ENT|   | FUNC    | 0   | CTRL|
                         bindings = <
 //╭──────────┬─────────┬─────────┬─────────┬───────┬─────────────╮   ╭─────────────┬─────────┬─────────┬─────────┬──────────┬───────╮
-   &kp TILDE  &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT         &kp CARET     &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR   ____
+   &swapper_tilde  &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT         &kp CARET     &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR   ____
 //├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
    &swapper   &kp LBKT  &kp RBKT &kp LBRC  &kp RBRC &kp LG(SPACE)     &kp LC(CARET) &kp MINUS &kp EQUAL &kp UNDER &kp COLON  &kp DQT
 //├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
@@ -173,17 +179,17 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
                 nav_layer {
                         label = "NAVI";
 // -----------------------------------------------------------------------------------------
-// |  TAB |A(1) |A(2) |A(3) |A(4) |A(5) |   |HOME |PG_UP| END |     |     |      |
-// |      |CTRL |SHIFT|PG_DN|CTRL |     |   | LFT | DWN |  UP | RGT |     |      |
-// |      |     |     |MUTE |VOL- |VOL+ |   |     |     |     |     |     |      |
+// |  TAB |G(1) |G(2) |G(3) |G(4) |G(5) |   |HOME |PG_UP| END |     |     |      |
+// |      |CTRL |SHIFT|LGUI |LALT |     |   | LFT | DWN |  UP | RGT |     |      |
+// |      |     |     |MUTE |VOL- |VOL+ |   |     |  -  |  =  |     |     | ENT  |
 //                    | GUI |     |     |   | SHFT|     | ALT |
                         bindings = <
 //╭──────┬──────────┬─────────┬───────────┬────────────┬────────────╮   ╭────────┬─────────┬─────────┬──────┬─────┬───────╮
-   ____   &kp LA(N1) &kp LA(N2) &kp LA(N3) &kp LA(N4)   &kp LA(N5)       &kp HOME &kp PG_UP &kp END   XXXX   XXXX  XXXX
+   ____   &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4)   &kp LG(N5)       &kp HOME &kp PG_UP &kp END   XXXX   XXXX  XXXX
 //├──────┼──────────┼─────────┼───────────┼────────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────┤
-   ____   &kp LCTRL  &kp LSHFT &kp PG_DN   &kp LCTRL    XXXX             &kp LEFT &kp DOWN  &kp UP  &kp RIGHT  XXXX  XXXX
+   ____   &kp LCTRL  &kp LSHFT &kp LGUI    &kp LALT     XXXX             &kp LEFT &kp DOWN  &kp UP  &kp RIGHT  XXXX  XXXX
 //├──────┼──────────┼─────────┼───────────┼────────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────┤
-   XXXX   XXXX       XXXX      &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP     XXXX     XXXX      XXXX      XXXX   XXXX  XXXX
+   XXXX   XXXX       XXXX      &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP     XXXX     &kp MINUS &kp EQUAL XXXX   XXXX  ____ 
 //╰──────┼──────────┼─────────┼───────────┼────────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────╯
                        	        ____         ____       &to DEFAULT      ____      ____     ____
 //                            ╰───────────┴────────────┴────────────╯   ╰────────┴─────────┴─────────╯
@@ -194,14 +200,14 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
                         label = "NUMPAD";
 // -----------------------------------------------------------------------------------------
 // | TAB  |       |       |      |     |       |   |     |  7  |  8  |  9  |  +  |   |
-// |S(GUI)|S(CTRL)|S(SHFT)|S(ALT)|     |       |   |     |  4  |  5  |  6  |  -  | * |
+// |S(ALT)|S(CTRL)|S(SHFT)|S(GUI)|     |       |   |     |  4  |  5  |  6  |  -  | * |
 // | SHFT | LGUI  |       |      |     |       |   |     |  1  |  2  |  3  |  /  | = |
 //                        | GUI  | SYM |NAV_ENT|   |P_ENT|  0  | .   |
                         bindings = <
 //╭─────────┬──────────┬─────────┬───────────┬──────┬──────╮   ╭───────────┬───────┬───────┬──────┬─────────┬──────────╮
    ____      ____       ____      ____        ____   ____       &to DEFAULT &kp N7  &kp N8  &kp N9  &kp PLUS  ____
 //├─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────┤
-   &sk LGUI  &sk LCTRL  &sk LSHFT  &sk LALT   ____   ____        ____       &kp N4  &kp N5  &kp N6  &kp MINUS &kp STAR
+   &sk LALT  &sk LCTRL  &sk LSHFT  &sk LGUI   ____   ____        ____       &kp N4  &kp N5  &kp N6  &kp MINUS &kp STAR
 //├─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────┤
    &kp LSHFT &kp LGUI   ____      ____        ____   ____        ____       &kp N1  &kp N2  &kp N3  &kp SLASH &kp EQUAL
 //╰─────────┼──────────┼─────────┼───────────┼──────┼──────┤   ├───────────┼───────┼───────┼──────┼─────────┼──────────╯
