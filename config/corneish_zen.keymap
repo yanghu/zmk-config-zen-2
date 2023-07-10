@@ -139,14 +139,14 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
                         label = "SYMBOL";
 // -----------------------------------------------------------------------------------------
 // |⌘-w  |  !  |  @  |  #  |  $  |  %     |   |  ^      |  &  |  *  |  (  |  )  | ALT+BKSP|
-// |G-Tab|  [  |  {  |  }  |  ]  | g-␣    |   | c-^     |  -  |  =  |  _  |  :  |  "      |
+// |G-Tab|  [  |  {  |  }  |  ]  | ⌘-t    |   | c-^     |  -  |  =  |  _  |  :  |  "      |
 // | G-~ |  |  |  `  |  \  |  ~  | c-␣    |   |         |  +  |  <  |  >  |  ?  |TO(LAYERS|
 //                   | GUI | SYM | NAV_ENT|   | FUNC    | 0   | CTRL|
                         bindings = <
 //╭──────────┬─────────┬─────────┬─────────┬───────┬─────────────╮   ╭─────────────┬─────────┬─────────┬─────────┬──────────┬───────╮
    &kp LG(W)      &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT         &kp CARET     &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR  &kp LA(BSPC)
 //├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
-   &swapper   &kp LBKT  &kp RBKT &kp LBRC  &kp RBRC &kp LG(SPACE)     &kp LC(CARET) &kp MINUS &kp EQUAL &kp UNDER &kp COLON  &kp DQT
+   &swapper   &kp LBKT  &kp RBKT &kp LBRC  &kp RBRC &kp LG(T)         &kp LC(CARET) &kp MINUS &kp EQUAL &kp UNDER &kp COLON  &kp DQT
 //├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
    &swapper_tilde &kp PIPE  &kp GRAVE &kp BSLH &kp TILDE &kp LC(SPACE)     XXXX         &kp PLUS  &kp LT    &kp GT    &kp QMARK ____
 //╰──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────╯
