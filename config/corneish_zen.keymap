@@ -138,17 +138,17 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
                 symbol_layer {
                         label = "SYMBOL";
 // -----------------------------------------------------------------------------------------
-// |G-~  |  !  |  @  |  #  |  $  |  %     |   |  ^      |  &  |  *  |  (  |  )  | ALT+BKSP|
+// |⌘-w  |  !  |  @  |  #  |  $  |  %     |   |  ^      |  &  |  *  |  (  |  )  | ALT+BKSP|
 // |G-Tab|  [  |  {  |  }  |  ]  | g-␣    |   | c-^     |  -  |  =  |  _  |  :  |  "      |
-// |     |  |  |  `  |  \  |  ~  | c-␣    |   |         |  +  |  <  |  >  |  ?  |TO(LAYERS|
+// | G-~ |  |  |  `  |  \  |  ~  | c-␣    |   |         |  +  |  <  |  >  |  ?  |TO(LAYERS|
 //                   | GUI | SYM | NAV_ENT|   | FUNC    | 0   | CTRL|
                         bindings = <
 //╭──────────┬─────────┬─────────┬─────────┬───────┬─────────────╮   ╭─────────────┬─────────┬─────────┬─────────┬──────────┬───────╮
-   &swapper_tilde  &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT         &kp CARET     &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR  &kp LA(BSPC)
+   &kp LG(W)      &kp EXCL  &kp AT   &kp HASH  &kp DLLR &kp PRCNT         &kp CARET     &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR  &kp LA(BSPC)
 //├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
    &swapper   &kp LBKT  &kp RBKT &kp LBRC  &kp RBRC &kp LG(SPACE)     &kp LC(CARET) &kp MINUS &kp EQUAL &kp UNDER &kp COLON  &kp DQT
 //├──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────┤
-   ____       &kp PIPE  &kp GRAVE &kp BSLH &kp TILDE &kp LC(SPACE)     XXXX         &kp PLUS  &kp LT    &kp GT    &kp QMARK ____
+   &swapper_tilde &kp PIPE  &kp GRAVE &kp BSLH &kp TILDE &kp LC(SPACE)     XXXX         &kp PLUS  &kp LT    &kp GT    &kp QMARK ____
 //╰──────────┼─────────┼─────────┼─────────┼───────┼─────────────┤   ├─────────────┼─────────┼─────────┼─────────┼──────────┼───────╯
                                   &to NUMPAD  ____   &to NAV              &mo FUNC  &kp LG(SPACE)  ____
 //                               ╰─────────┴───────┴─────────────╯   ╰─────────────┴─────────┴─────────╯
