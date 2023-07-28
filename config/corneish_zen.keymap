@@ -182,7 +182,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 // |  TAB |G(1) |G(2) |G(3) |G(4) |G(5) |   |HOME |PG_UP| END |     |     |      |
 // |      |CTRL |SHIFT|LGUI |LALT |CTRL |   | LFT | DWN |  UP | RGT |     |      |
 // |      |     |     |MUTE |VOL- |VOL+ |   |     |  -  |  =  |     |     | ENT  |
-//                    | GUI |G(A) |     |   | SHFT|     | ALT |
+//                    | GUI |G(A) |     |   |G(A(C))|     | ALT |
                         bindings = <
 //╭──────┬──────────┬─────────┬───────────┬────────────┬────────────╮   ╭────────┬─────────┬─────────┬──────┬─────┬───────╮
    ____   &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4)   &kp LG(N5)       &kp HOME &kp PG_UP &kp END   XXXX   XXXX  XXXX
@@ -191,7 +191,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //├──────┼──────────┼─────────┼───────────┼────────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────┤
    XXXX   XXXX       XXXX      &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP     XXXX     &kp MINUS &kp EQUAL XXXX   XXXX  ____ 
 //╰──────┼──────────┼─────────┼───────────┼────────────┼────────────┤   ├────────┼─────────┼─────────┼──────┼─────┼───────╯
-                       	        ____       &kp LG(LALT)  &to DEFAULT      ____      &kp LA(SPACE)     ____
+                       	        ____       &kp LG(LALT)  &to DEFAULT     &kp LG(LC(LALT)) &kp LA(SPACE)     ____
 //                            ╰───────────┴────────────┴────────────╯   ╰────────┴─────────┴─────────╯
                         >;
                 };
