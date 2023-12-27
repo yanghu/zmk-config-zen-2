@@ -120,7 +120,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 // |  TAB  |  Q  |  W  |  E  |  R  |  T     |   |  Y      |  U   |  I  |  O  |  P  | BKSP |
 // | S/CAP |  A  |  S  |  D  |  F  |  G     |   |  H      |  J   |  K  |  L  |  ;  |  '   |
 // | ALT   |  Z  |  X  |  C  |  V  |  B     |   |  N      |  M   |  ,  |  .  |  /  | ENT  |
-//                     | GUI | SYM | NAV_ENT|   | sk SHIFT| SPC  | ALT |
+//                     | GUI | SYM | NAV_ENT|   | sk SHIFT| SPC  | GUI |
                         bindings = <
 //╭──────────┬─────────────┬─────────────┬───────┬─────────────┬─────────────╮   ╭───────────┬─────────┬─────────────┬────────┬────────┬────────╮
    &kp TAB    &kp Q         &kp W         &kp E   &kp R         &kp T             &kp Y       &kp U     &kp I         &kp O    &kp P    &bspc_del
@@ -129,7 +129,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
    &kp LALT   &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
 //╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
-                                         &kp LGUI &mo SYMBOL    &lt NAV RET       &sk LSHIFT  &kp SPACE &kp LALT
+                                         &kp LGUI &mo SYMBOL    &lt NAV RET       &sk LSHIFT  &kp SPACE &kp LGUI
 //                                       ╰───────┴─────────────┴─────────────╯   ╰───────────┴─────────┴─────────────╯
 
                         >;
@@ -182,7 +182,7 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 // |  TAB |G(1) |G(2) |G(3) |G(4) |G(5) |   |HOME |PG_UP| END |     |     |      |
 // |      |CTRL |SHIFT|LGUI |LALT |CTRL |   | LFT | DWN |  UP | RGT |     |      |
 // |      |     |     |MUTE |VOL- |VOL+ |   |     |  -  |  =  |     |     | ENT  |
-//                    | GUI |G(A) |     |   |G(A(C))|     | ALT |
+//                    | GUI |G(A) |     |   |G(A(C))|     | GUI |
                         bindings = <
 //╭──────┬──────────┬─────────┬───────────┬────────────┬────────────╮   ╭────────┬─────────┬─────────┬──────┬─────┬───────╮
    ____   &kp LG(N1) &kp LG(N2) &kp LG(N3) &kp LG(N4)   &kp LG(N5)       &kp HOME &kp PG_UP &kp END   XXXX   XXXX  XXXX
