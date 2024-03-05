@@ -47,6 +47,12 @@ ZMK_BEHAVIOR(td_esc_caps, tap_dance,
         bindings = <&mt LCTRL ESC>, <&prog_caps_word>;
     )
 
+// Shift/ESC, caps word tap dance.
+ZMK_BEHAVIOR(td_sft_esc_caps, tap_dance,
+        tapping-term-ms = <130>;
+        bindings = <&mt LSHFT ESC>, <&prog_caps_word>;
+    )
+
 // Home row mods
 ZMK_BEHAVIOR(lht, hold_tap,
     flavor = "tap-preferred";
@@ -131,9 +137,9 @@ ZMK_COMBO(combo_lock, &kp LG(L), RB1 RB2, SYMBOL)
 //╭──────────┬─────────────┬─────────────┬───────┬─────────────┬─────────────╮   ╭───────────┬─────────┬─────────────┬────────┬────────┬────────╮
    &kp TAB    &kp Q         &kp W         &kp E   &kp R         &kp T             &kp Y       &kp U     &kp I         &kp O    &kp P    &bspc_del
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
-   &td_esc_caps   &lht LCTRL A  &lht LSHFT S  &kp D   &n_lt NUMPAD F &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
+   &td_sft_esc_caps   &lht LCTRL A  &lht LSHFT S  &kp D   &n_lt NUMPAD F &kp G            &kp H       &kp J     &rht LCTRL K  &kp L    &kp SEMI &kp SQT
 //├──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────┤
-   &kp LSHFT   &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
+   &kp LALT   &kp Z         &kp X         &kp C   &kp V         &kp B             &kp N       &kp M     &kp COMMA     &kp DOT  &kp FSLH &lt PSCR RET
 //╰──────────┼─────────────┼─────────────┼───────┼─────────────┼─────────────┤   ├───────────┼─────────┼─────────────┼────────┼────────┼────────╯
                                          &kp LGUI &mo SYMBOL    &lt NAV RET       &sk LSHIFT  &kp SPACE &kp LGUI
 //                                       ╰───────┴─────────────┴─────────────╯   ╰───────────┴─────────┴─────────────╯
