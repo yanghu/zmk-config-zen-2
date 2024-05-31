@@ -118,8 +118,8 @@ ZMK_BEHAVIOR(bspc_del, mod_morph,
 
 
 // combos
-ZMK_COMBO(combo_esc, &kp LBKT, RB1 RB2, DEFAULT)
-ZMK_COMBO(combo_esc, &kp RBKT, RB2 RB3, DEFAULT)
+ZMK_COMBO(combo_lbkt, &kp LBKT, RB1 RB2, DEFAULT)
+ZMK_COMBO(combo_rbkt, &kp RBKT, RB2 RB3, DEFAULT)
 ZMK_COMBO(combo_esc, &kp ESC, RM1 RM2, DEFAULT)
 ZMK_COMBO(combo_tab, &kp TAB, LB1 LB2, ALL)
 ZMK_COMBO(combo_paste, &kp LC(LS(V)), LM4 LM3 LB1, ALL)
